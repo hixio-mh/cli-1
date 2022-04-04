@@ -59,7 +59,9 @@
     "version": "npm run docs && auto-changelog -p --template keepachangelog && git add README.md docs CHANGELOG.md",
     "prepublishOnly": "git push && git push --tags && gh-release",
     "update-semver": "npm --depth 9999 update",
-    "postinstall": "node ./scripts/postinstall.js"
+    "postinstall": "node ./scripts/postinstall.js",
+    "prepublish": "npm run snyk-protect",
+    "snyk-protect": "snyk-protect"
   },
   "dependencies": {
     "@netlify/build": "^1.0.12",
@@ -144,7 +146,8 @@
     "which": "^2.0.2",
     "winston": "^3.2.1",
     "wrap-ansi": "^6.0.0",
-    "write-file-atomic": "^3.0.0"
+    "write-file-atomic": "^3.0.0",
+    "@snyk/protect": "latest"
   },
   "devDependencies": {
     "@oclif/dev-cli": "^1.22.2",
@@ -156,7 +159,7 @@
     "chai": "^4.2.0",
     "coveralls": "^3.0.4",
     "dependency-check": "^3.4.1",
-    "dependency-cruiser": "^5.2.2",
+    "dependency-cruiser": "^9.11.1",
     "eslint": "^5.16.0",
     "eslint-config-oclif": "^3.1.0",
     "eslint-config-prettier": "^4.3.0",
@@ -208,5 +211,6 @@
         "./src/hooks/analytics"
       ]
     }
-  }
+  },
+  "snyk": true
 }
